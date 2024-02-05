@@ -65,10 +65,12 @@ def get_playlists(channel_id):
         playlists.append(playlist_dict)
 
     nextPageToken = response.get("nextPageToken")
+
     while nextPageToken:
         request = youtube.playlists().list(
             part="contentDetails, snippet",
             channelId=channel_id,
+            pageToken = nextPageToken,
             maxResults = 50
             )
 
